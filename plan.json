@@ -1,0 +1,817 @@
+{
+ "generated": "2026-10-31T21:18",
+ "days": {
+  "2026-10-29": {
+   "session": "Rest, or 45 min Z1 (recovery score was 42 this morning)",
+   "type": "R",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-10-30": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-10-31": {
+   "session": "2 h: 20 min Z2 warm-up, 3 × 10 s all-out sprints (seated, standing, seated) 5 min apart, 1 × 1 min hard, rest Z2. New position.",
+   "type": "L",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-11-01": {
+   "session": "2h30–3 h Z2, free/group ride",
+   "type": "XL",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-11-02": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-11-03": {
+   "session": "Track, any session",
+   "type": "T",
+   "section": "Before the break",
+   "maintenance": false
+  },
+  "2026-11-04": {
+   "session": "Strength A (light)",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-05": {
+   "session": "Run: 4 × (4 min run + 1 min walk)",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-06": {
+   "session": "Rest (expect sore legs)",
+   "type": "R",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-07": {
+   "session": "Strength A + 20 min mobility",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-08": {
+   "session": "Run 25 min easy, walk breaks if needed",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-09": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-10": {
+   "session": "Strength A (+ load if 4 Nov felt easy)",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-11": {
+   "session": "Run 25–30 min easy",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-12": {
+   "session": "Rest or 30 min walk + mobility",
+   "type": "R",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-13": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-14": {
+   "session": "Run 30–35 min easy",
+   "type": "S",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-15": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Break: no cycling (strength + running)",
+   "maintenance": false
+  },
+  "2026-11-16": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-17": {
+   "session": "Track, moderate: no standing starts or all-out sprints",
+   "type": "T",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-18": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-19": {
+   "session": "Home trainer 1 h Z2 + 6 × 10 s high cadence (120+ rpm)",
+   "type": "E",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-20": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-21": {
+   "session": "2h30 Z2, 4 × 10 s sprints in the first hour (compare with 31 Oct)",
+   "type": "L",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-22": {
+   "session": "1h45 Z2",
+   "type": "L",
+   "section": "Week 16 → 22 Nov: back on the bike (~330 TSS)",
+   "maintenance": false
+  },
+  "2026-11-23": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-24": {
+   "session": "Track",
+   "type": "T",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-25": {
+   "session": "1 h Z2 + Strength B",
+   "type": "E",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-26": {
+   "session": "Home trainer, controlled threshold: 15 min warm-up, 5 × 6 min at 90–95%, 2 min easy between, cool-down",
+   "type": "T",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-27": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-28": {
+   "session": "3 h Z2: 4 × 10 s sprints in the first hour, 2 × 15 min Z3 in the last hour",
+   "type": "XL",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-29": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "Week 23 → 29 Nov (~420 TSS)",
+   "maintenance": false
+  },
+  "2026-11-30": {
+   "session": "Strength A (heavier phase starts)",
+   "type": "S",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-01": {
+   "session": "Track",
+   "type": "T",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-02": {
+   "session": "1 h Z2 + Strength B",
+   "type": "E",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-03": {
+   "session": "Controlled threshold: 5 × 8 min at 90–95%, 2 min easy between",
+   "type": "T",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-04": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-05": {
+   "session": "**20-min FTP test**: 20 min Z2, 3 × 1 min high cadence, 5 min easy, 20 min all-out (start ~360 W, push the last 5 min), 15 min easy. Send me the result.",
+   "type": "T",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-06": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "Week 30 Nov → 6 Dec: FTP test (~400 TSS)",
+   "maintenance": false
+  },
+  "2026-12-07": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-08": {
+   "session": "Track",
+   "type": "T",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-09": {
+   "session": "1h15 Z2 + 4 × 8 s sprints + Strength B",
+   "type": "E",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-10": {
+   "session": "Threshold: 4 × 10 min at 93–98% (new FTP), 3 min easy between",
+   "type": "T",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-11": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-12": {
+   "session": "3 h Z2: 6 × 10 s sprints in the first hour, 2 × 15 min sweet spot (88–93%) in the last hour",
+   "type": "XL",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-13": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "Week 7 → 13 Dec (~450 TSS)",
+   "maintenance": false
+  },
+  "2026-12-14": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "Week 14 → 18 Dec (~330 TSS before the ski trip)",
+   "maintenance": false
+  },
+  "2026-12-15": {
+   "session": "Track",
+   "type": "T",
+   "section": "Week 14 → 18 Dec (~330 TSS before the ski trip)",
+   "maintenance": false
+  },
+  "2026-12-16": {
+   "session": "1 h Z2 + Strength B",
+   "type": "E",
+   "section": "Week 14 → 18 Dec (~330 TSS before the ski trip)",
+   "maintenance": false
+  },
+  "2026-12-17": {
+   "session": "Threshold: 3 × 12 min at 95–100%, 4 min easy between",
+   "type": "T",
+   "section": "Week 14 → 18 Dec (~330 TSS before the ski trip)",
+   "maintenance": false
+  },
+  "2026-12-18": {
+   "session": "Rest / travel",
+   "type": "R",
+   "section": "Week 14 → 18 Dec (~330 TSS before the ski trip)",
+   "maintenance": false
+  },
+  "2026-12-19": {
+   "session": "Ski (travel day)",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-20": {
+   "session": "Ski + 1 h Z2 home trainer",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-21": {
+   "session": "Ski + 1 h Z2 with 6 × 8 s sprints",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-22": {
+   "session": "Ski only",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-23": {
+   "session": "Ski + 1h15: controlled threshold 5 × 8 min at 90–95%, 2 min easy between",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-24": {
+   "session": "Ski only",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-25": {
+   "session": "Rest, or easy ski",
+   "type": "R",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-26": {
+   "session": "Ski + 1 h Z2",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-27": {
+   "session": "Ski only",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-28": {
+   "session": "Ski + 1h15: 4 × 10 min at 93–98%, 3 min easy between",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-29": {
+   "session": "Ski only",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-30": {
+   "session": "Ski + 1 h Z2 with 6 × 8 s sprints",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2026-12-31": {
+   "session": "Ski only, or rest",
+   "type": "E",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2027-01-01": {
+   "session": "Rest",
+   "type": "R",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2027-01-02": {
+   "session": "Ski + 1 h Z2",
+   "type": "L",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2027-01-03": {
+   "session": "Travel. Rest, or 1 h Z2",
+   "type": "R",
+   "section": "Ski fortnight: Sat 19 Dec → Sun 3 Jan (maintenance: add ~400 kcal to every day type)",
+   "maintenance": true
+  },
+  "2027-01-04": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-05": {
+   "session": "Track",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-06": {
+   "session": "1 h Z2 + 4 × 8 s sprints",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-07": {
+   "session": "Controlled threshold: 5 × 8 min at 92–96%, 2 min easy between",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-08": {
+   "session": "Rest",
+   "type": "R",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-09": {
+   "session": "3 h Z2: 6 × 10 s sprints in the first hour, 2 × 20 min sweet spot (88–93%) in the last 75 min",
+   "type": "XL",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-10": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-11": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-12": {
+   "session": "Track",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-13": {
+   "session": "1 h Z2 + 4 × 8 s sprints",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-14": {
+   "session": "Threshold: 4 × 12 min at 93–98%, 3 min easy between",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-15": {
+   "session": "Rest",
+   "type": "R",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-16": {
+   "session": "3h30 Z2: 6 × 10 s sprints in the first hour, 3 × 12 min sweet spot in the last 90 min",
+   "type": "XL",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-17": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-18": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-19": {
+   "session": "Track",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-20": {
+   "session": "1h15 Z2 + 4 × 8 s sprints",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-21": {
+   "session": "Threshold: 2 × 20 min at 95–100%, 5 min easy between",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-22": {
+   "session": "Rest",
+   "type": "R",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-23": {
+   "session": "3h30 Z2: 6 × 10 s sprints in the first hour; last hour 2 × 20 min sweet spot + 3 × 10 s sprints at the very end",
+   "type": "XL",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-24": {
+   "session": "2h30 Z2",
+   "type": "L",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-25": {
+   "session": "Core only (easier week)",
+   "type": "R",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-26": {
+   "session": "Track, lighter",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-27": {
+   "session": "1 h Z2 + 4 × 8 s sprints",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-28": {
+   "session": "2 × 10 min sweet spot, rest easy, 1 h total",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-29": {
+   "session": "Rest",
+   "type": "R",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-30": {
+   "session": "**20-min FTP retest** (same protocol as 5 Dec). Send me the result.",
+   "type": "T",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-01-31": {
+   "session": "1h30 Z2",
+   "type": "E",
+   "section": "January: threshold, durability, sprints",
+   "maintenance": false
+  },
+  "2027-02-01": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-02": {
+   "session": "Track",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-03": {
+   "session": "1 h Z2 + 4 × 1 min hard (only if fatigue ≤ 2)",
+   "type": "E",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-04": {
+   "session": "**Rønnestad 30/15**: 15 min warm-up, 3 × (13 × 30 s on / 15 s off), 3 min easy between sets. \"On\" = the highest power you can hold for all 3 sets (≈ 110–120% FTP).",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-05": {
+   "session": "Rest",
+   "type": "R",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-06": {
+   "session": "3h30 Z2: sprints in the first hour; 2 × 20 min at 92–95% in the last 90 min; 3 × 10 s sprints at the end",
+   "type": "XL",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-07": {
+   "session": "2h30 Z2",
+   "type": "L",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-08": {
+   "session": "Strength A",
+   "type": "S",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-09": {
+   "session": "Track",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-10": {
+   "session": "1 h Z2 + 4 × 1 min hard (only if fatigue ≤ 2)",
+   "type": "E",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-11": {
+   "session": "VO2 long intervals: 5 × 5 min at 106–112%, 5 min easy between",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-12": {
+   "session": "Rest",
+   "type": "R",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-13": {
+   "session": "4 h Z2: sprints in the first hour; in hour 3–4, 3 × 8 min over-under (2 min at 95% / 1 min at 105%, repeated); 4 × 10 s sprints at the end",
+   "type": "XXL",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-14": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-15": {
+   "session": "Core only (easier week)",
+   "type": "R",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-16": {
+   "session": "Track, lighter",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-17": {
+   "session": "1 h Z2 + 4 × 8 s sprints",
+   "type": "E",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-18": {
+   "session": "3 × 10 min sweet spot",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-19": {
+   "session": "Rest",
+   "type": "R",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-20": {
+   "session": "2h30 Z2 + 4 × 10 s sprints",
+   "type": "L",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-21": {
+   "session": "1h30 Z2, or ski",
+   "type": "E",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-22": {
+   "session": "Strength A (light, last one before racing)",
+   "type": "S",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-23": {
+   "session": "Track",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-24": {
+   "session": "1 h Z2",
+   "type": "E",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-25": {
+   "session": "**Rønnestad 30/15**: 3 × (13 × 30 s on / 15 s off), aim a few watts above 4 Feb",
+   "type": "T",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-26": {
+   "session": "Rest",
+   "type": "R",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-27": {
+   "session": "Race simulation, 3 h: Z2 + 6 × (1 min all-out + 4 min Z3) in hours 2–3, sprint at the end. Or a hard group ride.",
+   "type": "XL",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  },
+  "2027-02-28": {
+   "session": "2 h Z2",
+   "type": "L",
+   "section": "February: VO2 max, race intensity, durability",
+   "maintenance": false
+  }
+ },
+ "day_types": {
+  "R": {
+   "when": "Rest",
+   "kcal": 2150,
+   "carbs": 230,
+   "protein": 160,
+   "fat": 65,
+   "onbike": "—"
+  },
+  "S": {
+   "when": "Strength or run only",
+   "kcal": 2450,
+   "carbs": 280,
+   "protein": 165,
+   "fat": 70,
+   "onbike": "—"
+  },
+  "E": {
+   "when": "≤ 1h15 Z2 / easy ski day",
+   "kcal": 2900,
+   "carbs": 390,
+   "protein": 160,
+   "fat": 75,
+   "onbike": "0–30 g/h (water fine < 75 min)"
+  },
+  "T": {
+   "when": "Track / key home trainer session / test",
+   "kcal": 3200,
+   "carbs": 470,
+   "protein": 160,
+   "fat": 75,
+   "onbike": "60 g/h + 30 g in the hour before"
+  },
+  "L": {
+   "when": "2h–2h30 ride, or ski + 1 h trainer",
+   "kcal": 3650,
+   "carbs": 560,
+   "protein": 160,
+   "fat": 80,
+   "onbike": "60–80 g/h"
+  },
+  "XL": {
+   "when": "3h–3h30 with blocks",
+   "kcal": 4300,
+   "carbs": 720,
+   "protein": 160,
+   "fat": 85,
+   "onbike": "80–90 g/h"
+  },
+  "XXL": {
+   "when": "4 h",
+   "kcal": 4800,
+   "carbs": 830,
+   "protein": 160,
+   "fat": 90,
+   "onbike": "90 g/h"
+  }
+ },
+ "weight": {
+  "start_date": "2026-10-28",
+  "start_kg": 79.0,
+  "target_kg": 75.0,
+  "rate_per_week": 0.3,
+  "deficit_end": "2027-02-15"
+ },
+ "deficit_by_type": {
+  "R": 400,
+  "S": 400,
+  "E": 400,
+  "T": 200,
+  "L": 200,
+  "XL": 200,
+  "XXL": 0
+ }
+}

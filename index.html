@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Training Board</title>
+<meta name="theme-color" content="#f4f6f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Training">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* Layout: one column on the phone, two on wider screens; "today" first. Numbers set like race-number bibs. */
+:root {
+  --bg: #f4f6f8; --surface: #fcfcfb; --ink: #0f1419; --ink-2: #4c5560; --ink-3: #7b8591;
+  --rule: #dfe3e8; --grid: #e9ecef; --accent: #2a78d6; --series-1: #2a78d6; --series-2: #eb6834;
+  --pos: #2a78d6; --neg: #e34948;
+  --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Source Sans 3", -apple-system, "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111418; --surface: #1a1d21; --ink: #eef1f4; --ink-2: #b7bec7; --ink-3: #87909b;
+    --rule: #2c3138; --grid: #252a30; --accent: #3987e5; --series-1: #3987e5; --series-2: #d95926;
+    --pos: #3987e5; --neg: #e66767; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111418; --surface: #1a1d21; --ink: #eef1f4; --ink-2: #b7bec7; --ink-3: #87909b;
+  --rule: #2c3138; --grid: #252a30; --accent: #3987e5; --series-1: #3987e5; --series-2: #d95926;
+  --pos: #3987e5; --neg: #e66767; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 var(--font-body); }
+.wrap { max-width: 1180px; margin: 0 auto;
+  padding-block: max(16px, env(safe-area-inset-top, 0px)) max(32px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 16px; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+h1 { font: 700 1.9rem/1 var(--font-display); letter-spacing: .01em; margin: 0; text-transform: uppercase; }
+h2 { font: 600 1.1rem/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .06em; margin: 0; color: var(--ink-2); }
+.meta { color: var(--ink-3); font-size: .88rem; flex-basis: 100%; }
+.actions { display: flex; gap: 8px; }
+button { font: 600 .9rem var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .6; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 16px; }
+.banner { background: color-mix(in srgb, var(--critical) 14%, var(--surface)); border: 1px solid var(--critical); border-radius: 10px; padding: 12px 14px; }
+.status { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 4px 12px 4px 8px; border-radius: 999px; width: fit-content;
+  background: color-mix(in srgb, var(--s) 16%, var(--surface)); border: 1px solid var(--s); }
+.status::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--s); }
+.status[data-s="good"] { --s: var(--good); } .status[data-s="warning"] { --s: var(--warning); }
+.status[data-s="serious"] { --s: var(--serious); } .status[data-s="none"] { --s: var(--ink-3); }
+.session { font-size: 1.05rem; text-wrap: pretty; }
+.section-tag { color: var(--ink-3); font-size: .82rem; text-transform: uppercase; letter-spacing: .05em; }
+.morning, .tiles, .food { display: grid; gap: 10px; }
+.morning { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tiles { grid-template-columns: repeat(auto-fit, minmax(min(140px, 45%), 1fr)); gap: 10px; }
+.food { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kv { display: grid; gap: 2px; min-width: 0; }
+.kv .k { color: var(--ink-3); font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; }
+.kv .v { font: 600 1.55rem/1.05 var(--font-display); font-variant-numeric: tabular-nums; }
+.kv .v small { font: 400 .8rem var(--font-body); color: var(--ink-3); margin-left: 2px; }
+.tile { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; }
+.tile .v { font-size: 2.1rem; }
+.tile .sub { color: var(--ink-3); font-size: .82rem; }
+.note { color: var(--ink-2); font-size: .9rem; }
+.chart { position: relative; height: 220px; min-width: 0; }
+.chart.short { height: 170px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-2); font-size: .86rem; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 3px; border-radius: 2px; background: var(--c); display: inline-block; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { color: var(--ink-3); font-weight: 600; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+tr.today td { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.done { color: var(--ink-2); font-size: .9rem; }
+.done b { color: var(--ink); font-weight: 600; }
+.chip { display: inline-block; font: 600 .76rem/1 var(--font-body); padding: 3px 6px; border-radius: 5px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.empty { color: var(--ink-3); font-style: italic; }
+footer { color: var(--ink-3); font-size: .82rem; }
+form { display: grid; gap: 12px; max-width: 460px; }
+label { display: grid; gap: 4px; font-weight: 600; font-size: .9rem; }
+input { font: 400 1rem var(--font-body); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); width: 100%; }
+.help { color: var(--ink-3); font-weight: 400; font-size: .84rem; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Training Board</h1>
+    <div class="actions">
+      <button id="btn-refresh" type="button">Refresh</button>
+      <button id="btn-settings" type="button">Settings</button>
+    </div>
+    <div class="meta" id="meta">Loading…</div>
+  </header>
+  <div id="banner" hidden></div>
+
+  <section class="panel" id="setup" hidden aria-labelledby="h-setup">
+    <h2 id="h-setup">Connect intervals.icu</h2>
+    <p class="note">Your ID and key are saved on this phone only. The app uses them to read your data straight from intervals.icu.</p>
+    <form id="setup-form">
+      <label for="f-athlete">Athlete ID
+        <input id="f-athlete" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="i123456" required>
+        <span class="help">intervals.icu → Settings → Developer Settings → Athlete ID</span>
+      </label>
+      <label for="f-key">API key
+        <input id="f-key" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+        <span class="help">Same page → API Key</span>
+      </label>
+      <div class="actions">
+        <button class="primary" type="submit">Save and load</button>
+        <button id="btn-forget" type="button">Remove from this phone</button>
+      </div>
+    </form>
+  </section>
+
+  <main id="app" hidden style="display:grid;gap:16px">
+    <div class="grid-2">
+      <section class="panel" aria-labelledby="h-today">
+        <h2 id="h-today">Today</h2>
+        <div id="status"></div>
+        <div class="morning" id="morning"></div>
+        <div>
+          <div class="section-tag" id="today-section"></div>
+          <div class="session" id="today-session"></div>
+        </div>
+        <div class="food" id="today-food"></div>
+        <div class="note" id="today-food-note"></div>
+      </section>
+      <section class="panel" aria-labelledby="h-tomorrow">
+        <h2 id="h-tomorrow">Tomorrow</h2>
+        <div>
+          <div class="section-tag" id="tomorrow-section"></div>
+          <div class="session" id="tomorrow-session"></div>
+        </div>
+        <div class="food" id="tomorrow-food"></div>
+        <div class="note" id="tomorrow-food-note"></div>
+      </section>
+    </div>
+
+    <div class="tiles" id="tiles"></div>
+
+    <section class="panel" aria-labelledby="h-week">
+      <h2 id="h-week">This week</h2>
+      <div class="scroll"><table id="week"></table></div>
+    </section>
+
+    <div class="grid-2">
+      <section class="panel" aria-labelledby="h-load">
+        <h2 id="h-load">Fitness &amp; fatigue · 180 days</h2>
+        <div class="legend"><span style="--c:var(--series-1)"><i></i>CTL (fitness)</span><span style="--c:var(--series-2)"><i></i>ATL (fatigue)</span></div>
+        <div class="chart"><canvas id="c-load" role="img" aria-label="CTL and ATL over the last 180 days"></canvas></div>
+      </section>
+      <section class="panel" aria-labelledby="h-form">
+        <h2 id="h-form">Form (TSB) · 180 days</h2>
+        <div class="legend"><span style="--c:var(--pos)"><i></i>Fresh (above 0)</span><span style="--c:var(--neg)"><i></i>Tired (below 0)</span></div>
+        <div class="chart"><canvas id="c-form" role="img" aria-label="TSB over the last 180 days"></canvas></div>
+      </section>
+    </div>
+
+    <div class="grid-2">
+      <section class="panel" aria-labelledby="h-hrv">
+        <h2 id="h-hrv">HRV · 90 days</h2>
+        <div class="note" id="hrv-note"></div>
+        <div class="chart"><canvas id="c-hrv" role="img" aria-label="Daily HRV and 7-day average"></canvas></div>
+      </section>
+      <section class="panel" aria-labelledby="h-weight">
+        <h2 id="h-weight">Weight · target 75 kg</h2>
+        <div class="note" id="weight-note"></div>
+        <div class="chart"><canvas id="c-weight" role="img" aria-label="Logged weight against the planned trend"></canvas></div>
+      </section>
+    </div>
+
+    <div class="grid-2">
+      <section class="panel" aria-labelledby="h-weekly">
+        <h2 id="h-weekly">Weekly load · 16 weeks</h2>
+        <div class="chart short"><canvas id="c-weekly" role="img" aria-label="Weekly training load in TSS"></canvas></div>
+      </section>
+      <section class="panel" aria-labelledby="h-power">
+        <h2 id="h-power">Power · last 28 days vs 12 months</h2>
+        <div class="scroll"><table id="power"></table></div>
+      </section>
+    </div>
+
+    <div class="grid-2">
+      <section class="panel" aria-labelledby="h-next">
+        <h2 id="h-next">Next 14 days</h2>
+        <div class="scroll"><table id="next"></table></div>
+      </section>
+      <section class="panel" aria-labelledby="h-recent">
+        <h2 id="h-recent">Recent activities</h2>
+        <div class="scroll"><table id="recent"></table></div>
+      </section>
+    </div>
+
+    <footer id="footer"></footer>
+  </main>
+</div>
+
+<script>
+const API = "https://intervals.icu/api/v1";
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const iso = d => d.toLocaleDateString("sv-SE");  // YYYY-MM-DD, heure locale
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const fmtDay = (s, opts = {weekday: "short", day: "numeric", month: "short"}) => new Date(s + "T12:00:00").toLocaleDateString("en-GB", opts);
+const num = (v, unit = "") => v == null ? '<span class="empty">–</span>' : `${v}${unit ? `<small>${unit}</small>` : ""}`;
+const kv = (k, v, unit) => `<div class="kv"><span class="k">${k}</span><span class="v">${num(v, unit)}</span></div>`;
+const r1 = v => typeof v === "number" ? Math.round(v * 10) / 10 : null;
+const mean = a => a.length ? a.reduce((s, x) => s + x, 0) / a.length : null;
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  del(k) { try { localStorage.removeItem(k); } catch {} },
+};
+const POWER = [[5, "5 s"], [30, "30 s"], [60, "1 min"], [300, "5 min"], [600, "10 min"], [1200, "20 min"], [3600, "60 min"]];
+
+// ---------------------------------------------------------------- data
+async function get(path, params, creds) {
+  const url = `${API}${path}?${new URLSearchParams(params)}`;
+  const r = await fetch(url, {headers: {Authorization: "Basic " + btoa("API_KEY:" + creds.key)}});
+  if (r.status === 401 || r.status === 403) throw new Error("intervals.icu refused the API key. Check it in Settings.");
+  if (!r.ok) throw new Error(`intervals.icu answered ${r.status}`);
+  return r.json();
+}
+
+async function fetchAll(creds) {
+  const today = new Date(), t = iso(today);
+  const id = encodeURIComponent(creds.athlete);
+  const [wellness, activities, curves, plan] = await Promise.all([
+    get(`/athlete/${id}/wellness`, {oldest: iso(addDays(today, -365)), newest: t}, creds),
+    get(`/athlete/${id}/activities`, {oldest: iso(addDays(today, -120)), newest: t}, creds),
+    get(`/athlete/${id}/power-curves`, {type: "Ride", curves: `1y,r.${iso(addDays(today, -27))}.${t}`}, creds),
+    fetch("plan.json", {cache: "no-cache"}).then(r => r.json()),
+  ]);
+  return {fetched_at: new Date().toISOString(), wellness, activities, curves, plan};
+}
+
+function summarize(raw) {
+  const today = new Date(), T = iso(today), plan = raw.plan;
+  const w = [...raw.wellness].sort((a, b) => a.id.localeCompare(b.id));
+  const wmap = Object.fromEntries(w.map(x => [x.id, x]));
+
+  const load = w.filter(x => x.id >= iso(addDays(today, -180))).map(x => ({d: x.id, ctl: r1(x.ctl), atl: r1(x.atl),
+    tsb: x.ctl != null && x.atl != null ? r1(x.ctl - x.atl) : null}));
+  const last = [...w].reverse().find(x => x.ctl != null) || {};
+
+  const rec = w.filter(x => x.id >= iso(addDays(today, -90)));
+  const hrv = rec.map((x, i) => {
+    const win = rec.slice(Math.max(0, i - 6), i + 1).map(y => y.hrv).filter(v => v != null);
+    return {d: x.id, hrv: r1(x.hrv), hrv7: win.length ? r1(mean(win)) : null};
+  });
+  const base = w.filter(x => x.hrv != null && x.id >= iso(addDays(today, -60))).map(x => x.hrv);
+  const hrvBase = base.length ? r1(mean(base)) : null;
+  const hrv7 = [...hrv].reverse().find(h => h.hrv7 != null)?.hrv7 ?? null;
+
+  const t = wmap[T] || {};
+  const morning = {ready: t.readiness ?? null, hrv: r1(t.hrv), rhr: t.restingHR ?? null,
+    sleep: t.sleepSecs ? r1(t.sleepSecs / 3600) : null, fatigue: t.fatigue ?? null, mood: t.mood ?? null};
+  // Règles du plan : fatigue 3-4 ou récup < 33 → alléger ; HRV 7 j > 10 % sous la base 60 j → vigilance
+  let status;
+  if (morning.ready == null && morning.hrv == null && morning.fatigue == null)
+    status = ["none", "No morning data yet", "Sync Whoop and log Fatigue + Mood in intervals.icu."];
+  else if ((morning.fatigue || 0) >= 3 || (morning.ready != null && morning.ready < 33))
+    status = ["serious", "Ease off today", "Fatigue ≥ 3 or recovery < 33: turn the quality session into 45 min Z1, or rest. Don't move it."];
+  else if (hrvBase && hrv7 && hrv7 < 0.9 * hrvBase)
+    status = ["warning", "Train, but watch it", `7-day HRV ${hrv7} ms is more than 10% under your 60-day average (${hrvBase} ms).`];
+  else status = ["good", "Good to train", "Recovery and fatigue are within your normal range."];
+  if (morning.fatigue == null) status.push("Fatigue not logged today.");
+
+  const weights = w.filter(x => x.weight).map(x => ({d: x.id, kg: x.weight}));
+  const latestW = weights.length ? weights[weights.length - 1].kg : null;
+  const W = plan.weight;
+  let maintReason = null;
+  if (latestW != null && latestW <= W.target_kg) maintReason = `you're at ${latestW} kg (target reached)`;
+  else if (T >= W.deficit_end) maintReason = "deficit ends on 15 Feb";
+
+  const foodFor = d => {
+    const p = plan.days[d];
+    if (!p || !p.type || !plan.day_types[p.type]) return null;
+    const n = {...plan.day_types[p.type], type: p.type, note: null};
+    if (p.maintenance) { n.kcal += 400; n.note = "ski fortnight: maintenance"; }
+    else if (maintReason) { n.kcal += plan.deficit_by_type[p.type] || 0; n.note = `maintenance: ${maintReason}`; }
+    return n;
+  };
+
+  const acts = [...raw.activities].sort((a, b) => (a.start_date_local || "").localeCompare(b.start_date_local || ""));
+  const actView = a => !a.type
+    ? {d: (a.start_date_local || "").slice(0, 10), name: "Strava activity (details not shared by Strava)", min: null, tss: null, np: null}
+    : {d: a.start_date_local.slice(0, 10), name: a.name || a.type, min: Math.round((a.moving_time || 0) / 60), tss: a.icu_training_load ?? null, np: a.icu_weighted_avg_watts ?? null};
+  const byDay = {};
+  acts.forEach(a => (byDay[(a.start_date_local || "").slice(0, 10)] ||= []).push(a));
+
+  const monday = addDays(today, -((today.getDay() + 6) % 7));
+  const week = [...Array(7)].map((_, i) => { const d = iso(addDays(monday, i)), p = plan.days[d];
+    return {d, plan: p?.session ?? null, food: p?.type ?? null, done: (byDay[d] || []).map(actView)}; });
+  const weekly = [...Array(16)].map((_, k) => { const start = addDays(monday, -7 * (15 - k));
+    return {w: iso(start), tss: Math.round([...Array(7)].reduce((s, _, i) => s + (wmap[iso(addDays(start, i))]?.ctlLoad || 0), 0))}; });
+  const upcoming = [];
+  for (let i = 1; i <= 14; i++) { const d = iso(addDays(today, i)); if (plan.days[d]) upcoming.push({d, ...plan.days[d]}); }
+
+  const lists = Array.isArray(raw.curves) ? raw.curves : (raw.curves.list || []);
+  const maps = lists.map(c => Object.fromEntries(c.secs.map((s, i) => [s, c.watts[i]])));
+  const power = POWER.map(([s, label]) => { const y1 = maps[0]?.[s] ?? null, d28 = maps[1]?.[s] ?? null;
+    return {label, y1, d28, pct: y1 && d28 ? Math.round(100 * d28 / y1) : null}; });
+  const ftp = [...acts].reverse().find(a => a.icu_ftp)?.icu_ftp ?? null;
+
+  return {T, fetched_at: raw.fetched_at, plan_generated: plan.generated, ctl: r1(last.ctl), atl: r1(last.atl),
+    tsb: last.ctl != null ? r1(last.ctl - last.atl) : null, ramp: r1(last.rampRate), ftp, status, morning, hrvBase, hrv7,
+    planToday: plan.days[T], planTomorrow: plan.days[iso(addDays(today, 1))], foodToday: foodFor(T), foodTomorrow: foodFor(iso(addDays(today, 1))),
+    load, hrv, weights, latestW, W, week, weekly, upcoming, power, recent: [...acts].reverse().slice(0, 12).map(actView)};
+}
+
+// ---------------------------------------------------------------- render
+function fillDay(prefix, p, f) {
+  $(prefix + "-section").textContent = p ? p.section : "";
+  $(prefix + "-session").innerHTML = p ? md(p.session) : '<span class="empty">Nothing in the plan for this day.</span>';
+  $(prefix + "-food").innerHTML = f ? kv("Calories", f.kcal.toLocaleString("en-GB"), "kcal") + kv("Carbs", f.carbs, "g") + kv("Protein", f.protein, "g") + kv("Fat", f.fat, "g") : "";
+  $(prefix + "-food-note").innerHTML = f ? `<span class="chip">Day type ${esc(f.type)}</span> On the bike: ${esc(f.onbike)}${f.note ? ` · <b>${esc(f.note)}</b>` : ""}` : "";
+}
+
+function render(D) {
+  const ago = Math.round((Date.now() - new Date(D.fetched_at)) / 60000);
+  $("meta").textContent = `${fmtDay(D.T, {weekday: "long", day: "numeric", month: "long"})} · data from ${ago < 1 ? "just now" : ago < 60 ? ago + " min ago" : new Date(D.fetched_at).toLocaleString("en-GB", {day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"})}`;
+  const [sKey, sLabel, sText, sExtra] = D.status;
+  $("status").innerHTML = `<div class="status" data-s="${sKey}">${esc(sLabel)}</div><div class="note">${esc(sText)}${sExtra ? " " + esc(sExtra) : ""}</div>`;
+  const m = D.morning;
+  $("morning").innerHTML = kv("Recovery", m.ready, "%") + kv("HRV", m.hrv, "ms") + kv("Rest HR", m.rhr, "bpm") + kv("Sleep", m.sleep, "h") + kv("Fatigue", m.fatigue, "/4") + kv("Mood", m.mood, "/4");
+  fillDay("today", D.planToday, D.foodToday);
+  fillDay("tomorrow", D.planTomorrow, D.foodTomorrow);
+
+  const tile = (k, v, unit, sub) => `<div class="tile kv"><span class="k">${k}</span><span class="v">${num(v, unit)}</span><span class="sub">${sub}</span></div>`;
+  const tsbSub = D.tsb == null ? "" : D.tsb < -25 ? "Deep fatigue" : D.tsb < -10 ? "Training load" : D.tsb <= 5 ? "Neutral" : "Fresh";
+  $("tiles").innerHTML = tile("CTL · fitness", D.ctl, "", "42-day load") + tile("ATL · fatigue", D.atl, "", "7-day load") +
+    tile("TSB · form", D.tsb, "", tsbSub) + tile("Ramp", D.ramp, "/wk", D.ramp > 8 ? "Above the 5–8 limit" : "CTL change per week") +
+    tile("FTP set", D.ftp, "W", "in intervals.icu") + tile("Weight", D.latestW, "kg", D.latestW ? `target ${D.W.target_kg} kg` : "not logged yet");
+
+  $("week").innerHTML = `<thead><tr><th>Day</th><th>Planned</th><th>Done</th></tr></thead><tbody>` + D.week.map(d => {
+    const done = d.done.length ? d.done.map(a => `<div class="done"><b>${esc(a.name)}</b>${a.min != null ? ` · ${a.min} min` : ""}${a.tss != null ? ` · ${a.tss} TSS` : ""}</div>`).join("") : (d.d < D.T ? '<span class="empty">Nothing recorded</span>' : "");
+    return `<tr class="${d.d === D.T ? "today" : ""}"><td style="white-space:nowrap">${fmtDay(d.d)}${d.food ? `<br><span class="chip">${esc(d.food)}</span>` : ""}</td><td>${d.plan ? md(d.plan) : '<span class="empty">Not in plan</span>'}</td><td>${done}</td></tr>`;
+  }).join("") + "</tbody>";
+
+  $("next").innerHTML = `<thead><tr><th>Day</th><th>Session</th></tr></thead><tbody>` + (D.upcoming.length
+    ? D.upcoming.map(u => `<tr><td style="white-space:nowrap">${fmtDay(u.d)}<br><span class="chip">${esc(u.type || "")}</span></td><td>${md(u.session)}</td></tr>`).join("")
+    : '<tr><td colspan="2" class="empty">The plan ends here. Ask your coach for the next block.</td></tr>') + "</tbody>";
+
+  $("power").innerHTML = `<thead><tr><th>Duration</th><th class="num">28 d</th><th class="num">12 mo</th><th class="num">%</th></tr></thead><tbody>` +
+    D.power.map(p => `<tr><td>${p.label}</td><td class="num">${p.d28 ?? "–"} W</td><td class="num">${p.y1 ?? "–"} W</td><td class="num">${p.pct ?? "–"}%</td></tr>`).join("") + "</tbody>";
+
+  $("recent").innerHTML = `<thead><tr><th>Date</th><th>Activity</th><th class="num">Min</th><th class="num">TSS</th></tr></thead><tbody>` +
+    D.recent.map(a => `<tr><td style="white-space:nowrap">${fmtDay(a.d, {day: "numeric", month: "short"})}</td><td>${esc(a.name)}</td><td class="num">${a.min ?? "–"}</td><td class="num">${a.tss ?? "–"}</td></tr>`).join("") + "</tbody>";
+
+  $("hrv-note").textContent = D.hrv7 && D.hrvBase ? `7-day average ${D.hrv7} ms · 60-day average ${D.hrvBase} ms (${Math.round(100 * (D.hrv7 / D.hrvBase - 1))}%)` : "No HRV data yet.";
+  $("weight-note").textContent = D.weights.length
+    ? `Latest ${D.latestW} kg on ${fmtDay(D.weights[D.weights.length - 1].d)} · dashed line = planned trend (−${D.W.rate_per_week} kg/week)`
+    : "No weight logged yet. Weigh in 3 times a week (morning, before eating) and log it in intervals.icu wellness.";
+  $("footer").textContent = `Data from intervals.icu. Plan updated ${D.plan_generated.replace("T", " ")}. Calorie targets are estimates.`;
+  lastData = D;
+  drawCharts();
+}
+
+// ---------------------------------------------------------------- charts
+let charts = [], lastData = null;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function drawCharts() {
+  const D = lastData;
+  if (!window.Chart || !D) return;
+  charts.forEach(c => c.destroy()); charts = [];
+  const ink3 = css("--ink-3"), grid = css("--grid"), s1 = css("--series-1"), s2 = css("--series-2"), surface = css("--surface");
+  Chart.defaults.font.family = css("--font-body"); Chart.defaults.color = ink3;
+  const opts = (y = {}) => ({responsive: true, maintainAspectRatio: false, animation: false, interaction: {mode: "index", intersect: false},
+    plugins: {legend: {display: false}, tooltip: {backgroundColor: surface, titleColor: css("--ink"), bodyColor: css("--ink-2"), borderColor: css("--rule"), borderWidth: 1, padding: 10}},
+    scales: {x: {grid: {display: false}, ticks: {maxTicksLimit: 5, maxRotation: 0, color: ink3}, border: {color: grid}},
+             y: {grid: {color: grid}, border: {display: false}, ticks: {color: ink3}, ...y}}});
+  const labels = arr => arr.map(x => fmtDay(x.d || x.w, {day: "numeric", month: "short"}));
+  const line = (data, color, extra = {}) => ({data, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0.25, spanGaps: true, ...extra});
+
+  charts.push(new Chart($("c-load"), {type: "line", data: {labels: labels(D.load), datasets: [line(D.load.map(x => x.ctl), s1, {label: "CTL"}), line(D.load.map(x => x.atl), s2, {label: "ATL"})]}, options: opts()}));
+  charts.push(new Chart($("c-form"), {type: "bar", data: {labels: labels(D.load), datasets: [{label: "TSB", data: D.load.map(x => x.tsb),
+    backgroundColor: D.load.map(x => (x.tsb ?? 0) >= 0 ? css("--pos") : css("--neg")), borderRadius: 2, barPercentage: 1, categoryPercentage: 0.9}]}, options: opts()}));
+  charts.push(new Chart($("c-hrv"), {type: "line", data: {labels: labels(D.hrv), datasets: [
+    line(D.hrv.map(x => x.hrv), s1, {label: "HRV (day)", pointRadius: 2.5, pointBackgroundColor: s1 + "66", showLine: false}),
+    line(D.hrv.map(x => x.hrv7), s1, {label: "HRV 7-day average"})]}, options: opts()}));
+
+  const W = D.W, days = [];
+  for (let t = new Date(W.start_date + "T12:00:00"); t <= new Date("2027-02-28T12:00:00"); t = addDays(t, 7)) days.push(iso(t));
+  D.weights.forEach(x => { if (x.d >= W.start_date && !days.includes(x.d)) days.push(x.d); }); days.sort();
+  const wm = Object.fromEntries(D.weights.map(x => [x.d, x.kg]));
+  const trend = days.map(d => Math.max(W.target_kg, +(W.start_kg - W.rate_per_week * (new Date(d) - new Date(W.start_date)) / 6048e5).toFixed(2)));
+  charts.push(new Chart($("c-weight"), {type: "line", data: {labels: days.map(d => fmtDay(d, {day: "numeric", month: "short"})), datasets: [
+    line(trend, ink3, {label: "Planned trend", borderDash: [5, 4], borderWidth: 1.5}),
+    line(days.map(d => wm[d] ?? null), s1, {label: "Logged", pointRadius: 4, pointBorderColor: surface, pointBorderWidth: 2})]}, options: opts({suggestedMin: 74, suggestedMax: 80})}));
+  charts.push(new Chart($("c-weekly"), {type: "bar", data: {labels: D.weekly.map(x => fmtDay(x.w, {day: "numeric", month: "short"})), datasets: [{label: "TSS", data: D.weekly.map(x => x.tss),
+    backgroundColor: D.weekly.map((x, i) => i === D.weekly.length - 1 ? s1 + "88" : s1), borderRadius: 4, barPercentage: 0.8}]}, options: opts()}));
+}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawCharts);
+new MutationObserver(drawCharts).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+
+// ---------------------------------------------------------------- app flow
+const creds = () => { const athlete = store.get("tb.athlete"), key = store.get("tb.key"); return athlete && key ? {athlete, key} : null; };
+function showSetup(show) {
+  $("setup").hidden = !show;
+  if (show) { $("f-athlete").value = store.get("tb.athlete") || ""; $("f-key").value = store.get("tb.key") || ""; }
+}
+function showError(msg) {
+  $("banner").hidden = !msg;
+  $("banner").innerHTML = msg ? `<div class="banner" role="alert"><strong>Couldn't update.</strong> ${esc(msg)}${lastData ? " Showing your last loaded data." : ""}</div>` : "";
+}
+let loading = false;
+async function refresh() {
+  const c = creds();
+  if (!c) { showSetup(true); $("meta").textContent = "Connect intervals.icu to start."; return; }
+  if (loading) return;
+  loading = true; $("btn-refresh").disabled = true; $("btn-refresh").textContent = "Updating…";
+  try {
+    const raw = await fetchAll(c);
+    store.set("tb.cache", JSON.stringify(raw));
+    showError(null);
+    $("app").hidden = false;
+    render(summarize(raw));
+  } catch (e) {
+    showError(e.message === "Failed to fetch" ? "No connection to intervals.icu." : e.message);
+  } finally {
+    loading = false; $("btn-refresh").disabled = false; $("btn-refresh").textContent = "Refresh";
+  }
+}
+
+$("setup-form").addEventListener("submit", e => {
+  e.preventDefault();
+  store.set("tb.athlete", $("f-athlete").value.trim());
+  store.set("tb.key", $("f-key").value.trim());
+  showSetup(false); refresh();
+});
+$("btn-forget").addEventListener("click", () => { ["tb.athlete", "tb.key", "tb.cache"].forEach(store.del); location.reload(); });
+$("btn-settings").addEventListener("click", () => showSetup($("setup").hidden));
+$("btn-refresh").addEventListener("click", refresh);
+// Rouvrir l'app après plus de 10 min → mise à jour automatique
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && (!lastData || Date.now() - new Date(lastData.fetched_at) > 6e5)) refresh();
+});
+
+// Affiche tout de suite les dernières données connues, puis met à jour
+try { const cached = JSON.parse(store.get("tb.cache") || "null"); if (cached && creds()) { $("app").hidden = false; render(summarize(cached)); } } catch {}
+refresh();
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
